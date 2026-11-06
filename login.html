@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Order | WOW Fashion</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .order-container { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+    .order-box { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 40px; width: 100%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: center; }
+    .order-box h2 { font-size: 28px; color: #fff; margin-bottom: 10px; }
+    .order-box p.subtitle { color: #94a3b8; font-weight: normal; font-size: 14px; margin-bottom: 30px; }
+    .input-group { margin-bottom: 20px; text-align: left; }
+    .input-group label { display: block; font-size: 14px; color: #cbd5e1; margin-bottom: 8px; }
+    .input-group input { width: 100%; padding: 14px 15px; border: 1px solid #475569; border-radius: 8px; font-size: 16px; outline: none; font-family: Arial, sans-serif; transition: border-color 0.3s; background: #0f172a; color: #fff; }
+    .input-group input:focus { border-color: #ff7b00; }
+    .input-group input[readonly] { background: #0b1120; color: #ff7b00; font-weight: bold; cursor: not-allowed; border-style: dashed; }
+    .error-msg { color: #ff3b3b; font-size: 13px; font-weight: bold; margin-top: 5px; display: none; }
+    .whatsapp-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: #25D366; color: white; padding: 15px; border: none; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; text-decoration: none; margin-top: 10px; }
+    .whatsapp-btn:hover { background: #1ebd57; }
+  </style>
+</head>
+<body>
+  <div id="header-container"></div>
+  
+  <div class="order-container">
+    <div class="order-box">
+      <h2>Complete Your Order</h2>
+      <p class="subtitle">Enter your phone number to finalize the order via WhatsApp</p>
+      
+      <form id="order-form">
+        <div class="input-group">
+          <label for="ref-number">Order Reference</label>
+          <input type="text" id="ref-number" readonly>
+        </div>
+        
+        <div class="input-group">
+          <label for="phone">SA Phone Number</label>
+          <input type="tel" id="phone" placeholder="e.g. 081 234 5678" required>
+          <p class="error-msg" id="phone-error">Please enter a valid South African number (e.g., 081 234 5678).</p>
+        </div>
+        
+        <button type="submit" class="whatsapp-btn">
+          <i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> Send Order via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="footer-container"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+      e.preventDefault(); 
+      
+      const refNumber = document.getElementById('ref-number').value;
+      const phoneInput = document.getElementById('phone');
+      const phone = phoneInput.value;
+      const errorMsg = document.getElementById('phone-error');
+      
+      const cleanPhone = phone.replace(/[\s-]/g, '');
+      const saPhoneRegex = /^(0[6-8][0-9]{8}|\+27[6-8][0-9]{8})$/;
+      
+      if (!saPhoneRegex.test(cleanPhone)) {
+        errorMsg.style.display = 'block';
+        phoneInput.style.borderColor = '#ff3b3b';
+        return; 
+      } else {
+        errorMsg.style.display = 'none';
+        phoneInput.style.borderColor = '#475569';
+      }
+
+      let cart = JSON.parse(localStorage.getItem('gigoCart')) || [];
+      if (cart.length === 0) {
+          alert("Your cart is empty. Please add items before checking out.");
+          window.location.href = "shop.html";
+          return;
+      }
+
+      let orderDetails = "";
+      let subtotal = 0;
+      cart.forEach(item => {
+          orderDetails += `- ${item.quantity}x ${item.title} (R${item.price.toFixed(2)} each)\n`;
+          subtotal += (item.price * item.quantity);
+      });
+
+      const deliveryName = localStorage.getItem('gigoDeliveryName') || "Standard Delivery";
+      const deliveryFee = parseFloat(localStorage.getItem('gigoDeliveryFee')) || 0;
+      const grandTotal = parseFloat(localStorage.getItem('gigoGrandTotal')) || subtotal;
+
+      const textMessage = `Hello WOW Fashion! I'd like to place an order.\n\n` +
+                          `*Ref:* ${refNumber}\n` +
+                          `*Phone:* ${phone}\n\n` +
+                          `*Items:*\n${orderDetails}\n` +
+                          `*Delivery:* ${deliveryName} (R${deliveryFee.toFixed(2)})\n` +
+                          `*Total:* R${grandTotal.toFixed(2)}`;
+                          
+      const encodedMessage = encodeURIComponent(textMessage);
+      
+      localStorage.removeItem('gigoCart');
+      localStorage.removeItem('gigoCartCount');
+      localStorage.removeItem('gigoRef');
+      
+      window.open(`https://wa.me/27817217316?text=${encodedMessage}`, '_blank');
+      
+      setTimeout(() => {
+          window.location.href = "index.html";
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

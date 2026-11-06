@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOW Fashion | Premium Clothing</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  
+  <div id="header-container"></div>
+  
+  <div class="header fade-element">
+    <div class="container"> 
+      <div class="row compact-hero">
+        <div class="col-2 fade-element">
+          <h1>Premium Fashion.<br>Now Online.</h1>
+          <p>Discover the latest shirts, jackets, fitted caps, and streetwear. Sourced globally, delivered to your door.</p>
+          <a href="shop.html" class="btn">Shop Best Sellers &#8594;</a>
+        </div>
+        <div class="col-2 fade-element">
+          <img src="WP/wow.png" alt="WOW Fashion Image" class="hero-logo-img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW: Categories section (replaces Trending Now & scrollable strip) -->
+  <div class="small-container">
+    <h2 class="title fade-element">Shop by Category</h2>
+    <div class="row grid-categories" id="categories-container"></div>
+  </div>
+   
+  <div class="offer fade-element">
+    <div class="small-container">
+      <h2 class="offer-heading fade-element">How WOW Fashion Works</h2>
+      <p class="offer-small-text fade-element">Fast local delivery. Trusted nationwide shipping.</p>
+      <div class="offer-row">
+        <div class="offer-col-img fade-element"> 
+          <div class="slider-track" id="autoSlider">
+            <img src="WP/browsingonphone.jpg" class="offer-img" alt="Browsing"><img src="WP/sellergivinghappycostomer.jpg" class="offer-img" alt="Buying"><img src="WP/deliveryarrivingathome.jpg" class="offer-img" alt="Delivery"><img src="WP/happyfamilyopenigbox.jpg" class="offer-img" alt="Unboxing"><img src="WP/personalookingonphone.jpg" class="offer-img" alt="Tracking">
+          </div>
+          <div class="slider-dots">
+            <a href="#" onclick="goToSlide(0); return false;"></a><a href="#" onclick="goToSlide(1); return false;"></a><a href="#" onclick="goToSlide(2); return false;"></a><a href="#" onclick="goToSlide(3); return false;"></a><a href="#" onclick="goToSlide(4); return false;"></a>
+          </div>
+        </div>
+        <div class="offer-col-text fade-element"> 
+          <div id="slider-text-0" class="slider-text active"><h3>1. Browse & Discover</h3><p>Browse our catalog on your phone and find exactly what you need.</p></div>
+          <div id="slider-text-1" class="slider-text"><h3>2. Secure Checkout</h3><p>Add your items to the cart and checkout safely.</p></div>
+          <div id="slider-text-2" class="slider-text"><h3>3. Fast Delivery</h3><p>We partner with trusted couriers to deliver your orders securely.</p></div>
+          <div id="slider-text-3" class="slider-text"><h3>4. Unbox Your Goodies</h3><p>Receive your package and unbox your new finds!</p></div>
+          <div id="slider-text-4" class="slider-text"><h3>5. Track & Support</h3><p>Need an update? Our team is always available on WhatsApp.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial fade-element">
+    <div class="small-container">
+      <div class="row grid-testimonials">
+        <div class="col-3 fade-element"><p>Super convenient. Ordered a cap and picked it up at the store the same day.</p><img src="WP/1029727528_1793697879475615.jpg" alt="User" class="user-img"><h3>Seak</h3></div>
+        <div class="col-3 fade-element"><p>The cap is great quality. Took a week to arrive but worth it.</p><img src="WP/blackgrapfater.jpg" alt="User" class="user-img"><h3>Thabo M.</h3></div>
+        <div class="col-3 fade-element"><p>Bought a cap for my son's birthday. He loves it. Fast local delivery!</p><img src="WP/boywithselfie.jpg" alt="User" class="user-img"><h3>Lerato K.</h3></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="commitment fade-element">
+    <div class="small-container">
+      <div class="section-header fade-element"><span class="pill">WHY US</span><h2>Our Commitment</h2><p>Providing premium fashion with a seamless shopping experience across South Africa.</p></div>
+      <div class="row grid-2x2">
+        <div class="col-2 feat-box fade-element"><img src="WP/tagprice.jpg" class="feat-img-round" alt="Great Value"><h4>Great Value</h4><p>We work hard to bring you the best prices on quality fashion items for your wardrobe.</p></div>
+        <div class="col-2 feat-box fade-element"><img src="WP/certifiedsecure.jpg" class="feat-img-round" alt="Quality Products"><h4>Quality Products</h4><p>Every item is carefully checked to ensure it meets our quality standards before it reaches you.</p></div>
+        <div class="col-2 feat-box fade-element"><img src="WP/deliverycar.jpg" class="feat-img-round" alt="Nationwide Delivery"><h4>Nationwide Delivery</h4><p>Fast, reliable courier delivery through our trusted partners to get your order to you quickly.</p></div>
+        <div class="col-2 feat-box fade-element"><img src="WP/messageicon.jpg" class="feat-img-round" alt="Quick Support"><h4>Quick Support</h4><p>Our team is available on WhatsApp to help with order updates, tracking, and product questions.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="delivery fade-element">
+    <div class="small-container">
+      <div class="section-header fade-element"><span class="pill">LOGISTICS PARTNERS</span><h2>Our Delivery Services</h2><p>We partner with South Africa's most reliable couriers to deliver your orders safely and on time.</p></div>
+      <div class="partner-logos">
+        <div class="partner-box fade-element"><img src="WP/courierlogo.png" alt="The Courier Guy" style="max-width: 100%; max-height: 80px; object-fit: contain;"></div>
+        <div class="partner-box fade-element"><img src="WP/postnet.png" alt="PostNet" style="max-width: 100%; max-height: 80px; object-fit: contain;"></div>
+        <div class="partner-box fade-element"><img src="WP/pexipep.png" alt="Paxi" style="max-width: 100%; max-height: 80px; object-fit: contain;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-banner fade-element">
+    <div class="small-container"><h2>Ready to Upgrade Your Wardrobe?</h2><p>Browse our complete catalog of premium clothing. New products added weekly.</p><a href="shop.html" class="cta-btn">Shop All Products</a></div>
+  </div>
+
+  <div id="footer-container"></div>
+
+  <script src="script.js"></script>
+  <script>
+    const slider = document.getElementById('autoSlider');
+    const dots = document.querySelectorAll('.slider-dots a');
+    const texts = document.querySelectorAll('.slider-text');
+    let autoScrollInterval;
+    let currentIndex = 0;
+    const totalImages = 5;
+
+    function updateSlide(index) {
+      dots.forEach(dot => dot.style.background = '#475569');
+      if(dots[index]) dots[index].style.background = '#ff7b00';
+      texts.forEach(text => text.classList.remove('active'));
+      const activeText = document.getElementById(`slider-text-${index}`);
+      if(activeText) activeText.classList.add('active');
+    }
+    function goToSlide(index) {
+      currentIndex = index;
+      slider.scrollTo({ left: slider.clientWidth * index, behavior: 'smooth' });
+      updateSlide(index); resetAutoScroll();
+    }
+    function startAutoScroll() {
+      autoScrollInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalImages;
+        slider.scrollTo({ left: slider.clientWidth * currentIndex, behavior: 'smooth' });
+        updateSlide(currentIndex);
+      }, 4000); 
+    }
+    function resetAutoScroll() { clearInterval(autoScrollInterval); startAutoScroll(); }
+    updateSlide(0); startAutoScroll();
+    slider.addEventListener('touchstart', () => clearInterval(autoScrollInterval));
+    slider.addEventListener('touchend', () => { currentIndex = Math.round(slider.scrollLeft / slider.clientWidth); updateSlide(currentIndex); startAutoScroll(); });
+
+    const faders = document.querySelectorAll('.fade-element');
+    const appearOptions = { threshold: 0, rootMargin: "0px 0px -100px 0px" };
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) entry.target.classList.remove('appear');
+        else entry.target.classList.add('appear');
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
+</body>
+</html>

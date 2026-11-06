@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | WOW Fashion</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .back-btn { display: inline-block; background: #ff3b3b; color: white; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-bottom: 30px; margin-top: 10px; transition: transform 0.3s, background 0.3s; }
+    .back-btn:hover { background: #e03e3e; transform: scale(1.05); }
+    .qty-container { display: flex; align-items: center; border: 2px solid #0b1a30; border-radius: 40px; width: fit-content; margin-bottom: 20px; overflow: hidden; }
+    .qty-btn { background: #1e293b; color: #fff; border: none; padding: 10px 20px; font-size: 20px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+    .qty-btn:hover { background: #334155; }
+    .qty-input { width: 50px; text-align: center; border: none; background: #1e293b; font-size: 18px; font-weight: bold; color: #fff; outline: none; }
+    .action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+    .add-cart-btn { background: #ff7b00; color: white; border: none; padding: 18px 30px; border-radius: 40px; font-size: 18px; font-weight: bold; cursor: pointer; flex: 1; transition: background 0.3s; }
+    .add-cart-btn:hover { background: #e06c00; }
+    .view-cart-btn { background: #25D366; color: white; text-decoration: none; padding: 18px 30px; border-radius: 40px; font-size: 18px; font-weight: bold; cursor: pointer; flex: 1; text-align: center; transition: background 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;}
+    .view-cart-btn:hover { background: #1ebd57; }
+    
+    /* Product Heart Button */
+    .prod-fav-btn { background: #1e293b; border: 2px solid #334155; color: #fff; padding: 18px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: border-color 0.3s, color 0.3s; }
+    .prod-fav-btn:hover { border-color: #ff3b3b; }
+  </style>
+</head>
+<body>
+  <div id="header-container"></div>
+  
+  <div class="small-container" style="margin-top: 40px;">
+    <a href="shop.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Shop</a>
+    <div class="row">
+      <div class="col-2">
+        <div style="background: #1e293b; border-radius: 12px; overflow: hidden; margin-bottom: 15px;">
+          <img id="mainImage" class="hero-logo-img" src="" alt="Product Image" style="width: 100%; height: auto; object-fit: cover; aspect-ratio: 1/1;">
+        </div>
+        <div id="thumbnail-container" style="display: flex; gap: 10px; cursor: pointer;"></div>
+      </div>
+      
+      <div class="col-2" style="display: flex; flex-direction: column; justify-content: center;">
+        <p class="card-category" id="product-category" style="font-size: 14px;"></p>
+        <h1 id="product-title" style="font-size: 36px; color: #fff; margin-bottom: 10px;"></h1>
+        
+        <div style="color: #ffb300; font-size: 18px; margin-bottom: 15px;">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+          <span style="color: #64748b; font-size: 14px; margin-left: 10px; font-weight: normal;">(12 Reviews)</span>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <span class="old-price" id="product-old-price" style="font-size: 18px;"></span>
+          <div class="new-price" id="product-new-price" style="font-size: 36px;"></div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <span class="tag-green" id="product-tag" style="position: static; display: inline-block;"></span>
+        </div>
+
+        <p id="product-desc" style="color: #cbd5e1; font-weight: normal; line-height: 1.6; margin-bottom: 20px;"></p>
+        
+        <div style="display: flex; align-items: center; margin-bottom: 30px;">
+          <span style="font-weight: bold; margin-right: 15px; font-size: 16px; color:#fff;">Quantity:</span>
+          <div class="qty-container">
+            <button class="qty-btn" onclick="decreaseQty()">-</button>
+            <input type="text" id="qty-input" class="qty-input" value="1" readonly>
+            <button class="qty-btn" onclick="increaseQty()">+</button>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button id="add-to-cart-btn" class="add-cart-btn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+          <button id="product-fav-btn" class="prod-fav-btn" title="Add to Favourites">&#9825;</button>
+          <a href="cart.html" class="view-cart-btn"><i class="fa-solid fa-cart-shopping"></i> View Cart</a>
+        </div>
+        
+        <p style="text-align: center; font-size: 13px; color: #64748b; margin-top: 15px; font-weight: normal;">Minimum order value: R200. Secure payments only.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-container"></div>
+
+  <script src="script.js"></script>
+  <script>
+    const qtyInput = document.getElementById('qty-input');
+    function increaseQty() { qtyInput.value = parseInt(qtyInput.value) + 1; }
+    function decreaseQty() { if (parseInt(qtyInput.value) > 1) qtyInput.value = parseInt(qtyInput.value) - 1; }
+
+    document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+      let qtyToAdd = parseInt(qtyInput.value);
+      let cart = JSON.parse(localStorage.getItem('gigoCart')) || [];
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+      const productData = window.products[productId];
+
+      if (!productData) return;
+
+      const newItem = { id: productId, title: productData.title, price: parseFloat(productData.price), image: productData.images[0], quantity: qtyToAdd };
+
+      const existingItemIndex = cart.findIndex(item => item.id === productId);
+      if (existingItemIndex > -1) { cart[existingItemIndex].quantity += qtyToAdd; } 
+      else { cart.push(newItem); }
+
+      localStorage.setItem('gigoCart', JSON.stringify(cart));
+      let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      localStorage.setItem('gigoCartCount', totalCount);
+      document.getElementById('cart-count').innerText = totalCount;
+      
+      const originalText = this.innerHTML;
+      this.innerHTML = `<i class="fa-solid fa-check"></i> Added ${qtyToAdd}!`;
+      this.style.background = "#27ae60";
+      setTimeout(() => {
+        this.innerHTML = originalText;
+        this.style.background = "#ff7b00";
+        qtyInput.value = 1; 
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
